@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import React, { useState } from "react";
+import React from "react";
 import "./form.css"
 import axios from 'axios';
 
@@ -15,8 +15,6 @@ export const UpdatePassengerForm = (props) => {
     const countryOfOriginRef = useRef(); 
     const bookingNumberRef = useRef(); 
     
-  
-   
     
     const handleSubmit = async (event) => {
        // I need it to refresh else the data wont autopopulate
@@ -69,11 +67,11 @@ export const UpdatePassengerForm = (props) => {
                     <input id="countryOfOrigin" type="text" placeholder="Country" required ref={countryOfOriginRef} />
                 </div>
 
-                {/**Not required yets */}
+                
 
-                <label htmlFor="noOfPassengers">Assigned Flight</label>
+                <label htmlFor="assignFlight">Assigned Flight</label>
                 <div>
-                    <input id="noOfPassengers" type="text" placeholder="flight no." ref={bookingNumberRef} />
+                    <input id="assignFlight" type="text" placeholder="flight no." ref={bookingNumberRef} />
                 </div>
 
 

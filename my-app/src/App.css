@@ -27,3 +27,35 @@ section{
 
   align-items: center;
 }
+
+.box{
+  display:flex-grid;
+  align-content: space-between;
+  padding-left: "5px";
+  
+  font: size 50000px;
+}
+
+.mainPage{
+
+  background-color: lightblue;
+  display:flexbox;
+  align-items: right;
+
+  
+}
+
+.dateTime{
+  text-align: center;
+}
+
+.message{
+ font-style:italic;
+ font-size: 50px;
+ color:red;
+ text-align: center;
+
+}
+
+
+

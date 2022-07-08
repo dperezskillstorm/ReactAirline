@@ -2,10 +2,20 @@ import React from 'react'
 
 function Resources() {
   return (
-    <div className="resources">
-        <h1>Resources</h1>
-      
-    </div>
+    <>
+  <section>
+ <h2><li >PayRoll</li></h2>
+ <h2><li >Customer Service</li></h2>
+ <h2><li >FAQ</li></h2>
+ <h2><li >Basic Commands</li></h2>
+ <h2><li >Human Resources</li></h2>
+ 
+
+
+ 
+  
+</section> 
+   </>
   )
 }
 

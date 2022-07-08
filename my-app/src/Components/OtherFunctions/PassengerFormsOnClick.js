@@ -1,6 +1,8 @@
-import {useState} from 'react';
 import { AddPassengerForm } from '../forms/AddPassengerForm';
 import { UpdatePassengerForm } from '../forms/UpdatePassengerForm';
+
+
+//THIS COMPOMENT TRIGGERS WHICH FORM WILL BE ON SCREEN DEPENDING ON clickHandle and value
 
 export const PassengerFormsOnClick = (props) =>{
 

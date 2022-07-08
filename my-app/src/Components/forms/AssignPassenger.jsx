@@ -1,13 +1,5 @@
 import { useRef } from "react";
-import {TextField} from "@material-ui/core";
-import  { useState } from "react";
-import { Button } from '@mui/material'
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import { GetData } from '../Data/getData';
 import "./form.css"
-
 import axios from 'axios';
 
 
@@ -32,7 +24,7 @@ export const AssignPassenger = (props) => {
         // in order to patch to work i need to get rid of the flight number and need to include the _id number
         try {
           const data =  await axios.patch(`http://localhost:8085/flight/addPassenger/${props.document}`,{_id:props.document, passengers: passengerRef.current.value} );
-            alert(data)
+            
                                
       
         } catch (error) {
@@ -44,7 +36,7 @@ export const AssignPassenger = (props) => {
         <>
         <section>
             <form className="MyForm" onSubmit={handleSubmit} >
-            <label htmlFor="idValue"> <h2>Flight Number:</h2> <h2 className="flightNumber">{props.data.flightNumber}</h2> </label>       
+            <label htmlFor="idValue"> <h2>Flight Number:</h2> <h2 className="lightNumber">{props.data.flightNumber}</h2> </label>       
 
 
 <label htmlFor="passengers"><br/><br/><h2>Passengers Name</h2></label>

@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+//Material UI imports
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,18 +8,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { GetData, GetDataById } from '../../Data/getData';
-//import Moment from 'moment';
-import { dataDelete } from '../../Data/dataDelete';
-import { PassengerFormsOnClick } from '../../OtherFunctions/PassengerFormsOnClick';
 import * as BsIcons from 'react-icons/bs';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import UpdateIcon from '@mui/icons-material/Update';import { useState } from 'react';
+import UpdateIcon from '@mui/icons-material/Update';
 
-;
+//Compoment Imports
+import { GetData, GetDataById } from '../Data/getData';
+import { dataDelete } from '../Data/dataDelete';
+import { PassengerFormsOnClick } from '../OtherFunctions/PassengerFormsOnClick';
 
+
+//Styled Tables
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -40,6 +42,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
+
+
 export function PassengerBoardTable() {
 
 
@@ -48,12 +52,6 @@ export function PassengerBoardTable() {
 
     let passengers = GetData("http://localhost:8085/passenger/");
   
-
-    let [formKey, setFormKey] = useState('');
-    //let [firstName, setFirstName] = useState('');
-
-    let autoPop =GetDataById("http://localhost:8085/passenger/",formKey)
-
   
     let [FormState, setFormState] = useState();
     let [document, setDocument] = useState();
@@ -63,35 +61,28 @@ const handleAdd =()=>{
   setFormState("Add");
 }
 
-    const updateHandle = (key) => {
-      setFormState("Update");
-      setDocument(key);
-      
-
-    }
-
-  
-
-    
-
-  
-    //const formatDate = Moment().format('DD-MM-YYYY');
-
-
-    //Handle Delete Buttom
-    const handleDelete =  (key) => {
-      dataDelete(`http://localhost:8085/passenger/${key}`)
-    
-      console.log(`the key is ${key}`)
-      window.location.reload()
-      
+const updateHandle = (key) => {
+  setFormState("Update");
+  setDocument(key);
       }
 
 
-        //Render Table to Page
+    //Handle Delete Buttom
+const handleDelete =  (key) => {
+  dataDelete(`http://localhost:8085/passenger/${key}`)
+    
+  console.log(`the key is ${key}`)
+  window.location.reload()
+      }
+
+
+  //Render Table to Page
   return (
 
     <>
+   
+    
+    <section>
     <Box  m={5}
  //margin
   display="flex"
@@ -107,8 +98,7 @@ const handleAdd =()=>{
                                 onClick={()=>handleAdd()}
                                 startIcon={<BsIcons.BsFillPeopleFill/>} >AddPassenger</Button>
                                </Box>
-    
-    <section>    <TableContainer component={Paper}>
+          <TableContainer component={Paper}>
       <Table sx={{  }} aria-label="customized table" align="center">
         <TableHead>
           <TableRow>

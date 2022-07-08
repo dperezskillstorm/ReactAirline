@@ -3,7 +3,9 @@ import { AddFlightForm } from '../forms/AddFlightForm';
 import { AssignPassenger } from '../forms/AssignPassenger';
 import { UpdateFlightForm } from '../forms/UpdateFlightForm';
 
+//THIS COMPOMENT TRIGGERS WHICH FORM WILL BE ON SCREEN DEPENDING ON clickHandle and value
 export const FlightFormsOnClick = (props) =>{
+    
 
     
     
@@ -22,5 +24,9 @@ export const FlightFormsOnClick = (props) =>{
 } else if (state==="Assign") {
     return(<><h2>Assign Passenger</h2> <AssignPassenger document = {props.document} data={props.data}/></>)
   
-}else{}
+}else if (state ==="Manifest"){
+    return (<><h2>Assign Passenger</h2> <nothing here/></>)
+}else{
+
+}
     }

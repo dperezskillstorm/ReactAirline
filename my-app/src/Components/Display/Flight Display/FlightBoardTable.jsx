@@ -1,4 +1,10 @@
-import * as React from 'react';
+import React,{useState} from 'react';
+//Material UI Imports
+import { Button } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import UpdateIcon from '@mui/icons-material/Update';
+import * as BsIcons from 'react-icons/bs';
+import * as MdIcons from 'react-icons/md';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,17 +13,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { GetData } from '../../Data/getData';
-//import Moment from 'moment';
+
+//Component Imports
 import { dataDelete } from '../../Data/dataDelete';
-import {useNavigate} from 'react-router-dom';
-import { Button } from '@mui/material';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import UpdateIcon from '@mui/icons-material/Update';
-import * as BsIcons from 'react-icons/bs';
-import {useState} from 'react';
+import { GetData } from '../../Data/getData';
 import { FlightFormsOnClick } from '../../OtherFunctions/FlightFormsOnClick';
 
+
+
+//Style Table for Flights
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -69,6 +73,11 @@ export function FlightBoardTable() {
        
         }
 
+        const handleAdd = () =>
+        {
+          setFormID("Add")
+        }
+
         const assignPassenger = (key,pass,limit,data) =>{
           let cap = limit-pass;
          
@@ -97,10 +106,17 @@ export function FlightBoardTable() {
   return (
 
 <>
+                      
 
     {/*-----Table*/}
-    <section>    <TableContainer component={Paper}>
-    
+    <section> 
+    <Button variant="contained" 
+                                color="success" 
+                                align="center"
+                                size="30%" 
+                                onClick={()=>{handleAdd()}}
+                                startIcon={<MdIcons.MdFlight/>} >Add Flight</Button>
+       <TableContainer component={Paper}>
       <Table sx={{  }} aria-label="customized table" align="center">
         <TableHead>
           <TableRow>
