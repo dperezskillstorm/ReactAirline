@@ -44,11 +44,12 @@ export function FlightBoardTable() {
 
   const [FormID, setFormID] = useState();
   const [IdRef, setIdRef] = useState();
+  const[data, setData] = useState();
     // Get Data from DB
     // Flights are being pulled with no problems
     let flights = GetData("http://localhost:8085/flight/");
 
-
+    
     //const formatDate = Moment().format('DD-MM-YYYY');
 
 
@@ -60,20 +61,30 @@ export function FlightBoardTable() {
       
       }
 
-      const handleUpdate = (key) => {
+      const handleUpdate = (key,data) => {
         setFormID("Update")
         setIdRef(key)
+        setData(data)
         
        
         }
 
-        const assignPassenger = (key) =>{
-          setFormID("Assign")
-          IdRef(key)
+        const assignPassenger = (key,pass,limit,data) =>{
+          let cap = limit-pass;
          
+          if(cap<=0){
+            alert("this flight is full");
           
-        }
+                    }else{
+          setFormID("Assign")
+          setIdRef(key)
+          setData(data)
 
+                    }
+         
+         
+                    }  
+        
 
 
    
@@ -85,13 +96,11 @@ export function FlightBoardTable() {
 
   return (
 
-
 <>
-
 
     {/*-----Table*/}
     <section>    <TableContainer component={Paper}>
-    <button>Add flight</button>
+    
       <Table sx={{  }} aria-label="customized table" align="center">
         <TableHead>
           <TableRow>
@@ -119,7 +128,7 @@ export function FlightBoardTable() {
                     <StyledTableCell align="right">{flight.departureAirport}</StyledTableCell>
                     <StyledTableCell align="right">{flight.departureDate}</StyledTableCell>
 
-                    <StyledTableCell align="right">{flight.currentPassengers}/{flight.passengerLimit}</StyledTableCell>
+                    <StyledTableCell align="right">{flight.passengers.length}/{parseInt(flight.passengerLimit)}</StyledTableCell>
                     <StyledTableCell align="right">
                         <Button variant="contained" 
                                 color="error" 
@@ -128,12 +137,12 @@ export function FlightBoardTable() {
                                 startIcon={<DeleteOutlineIcon/>}   >Delete</Button>
                     
                         <Button variant="contained" size="30%"
-                        onClick={()=>{handleUpdate(flight._id)}} startIcon={<UpdateIcon/>}>Update</Button>
+                        onClick={()=>{handleUpdate(flight._id,flight)}} startIcon={<UpdateIcon/>}>Update</Button>
                         
                          <Button variant="contained" 
                                 color="success" 
                                 size="30%" 
-                                onClick={()=>{assignPassenger(flight._id)}}
+                                onClick={()=>{assignPassenger(flight._id,flight.passengers.length,flight.passengerLimit,flight)}}
                                 startIcon={<BsIcons.BsFillPeopleFill/>} >Assign</Button>
                       </StyledTableCell>
                   </StyledTableRow>
@@ -148,8 +157,8 @@ export function FlightBoardTable() {
                     </TableContainer>
                     <br></br>
         
-        <FlightFormsOnClick state={FormID} document={IdRef} />
-         </section>
+        <FlightFormsOnClick state={FormID} document={IdRef} data={data}/>
+         </section> 
          {/*-----End*/}
 
 </>

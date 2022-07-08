@@ -54,7 +54,7 @@ export function PassengerBoardTable() {
 
     let autoPop =GetDataById("http://localhost:8085/passenger/",formKey)
 
-    let[formData,setFormData] = useState([])
+  
     let [FormState, setFormState] = useState();
     let [document, setDocument] = useState();
 

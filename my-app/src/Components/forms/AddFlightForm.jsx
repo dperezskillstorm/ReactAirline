@@ -11,6 +11,7 @@ import "./form.css"
 import axios from 'axios';
 
 
+//NOTEs: WORKS WELL NO PROBLEM
 
 
 export const AddFlightForm = () => {
@@ -80,7 +81,7 @@ export const AddFlightForm = () => {
 
                 <label htmlFor="passengerLimit"> Passenger Capacity</label>
                 <div>
-                    <input id="passengerLimit" type="text"  ref={passengerLimitRef} />
+                    <input id="passengerLimit" type="number"  ref={passengerLimitRef} />
                 </div>
 
                 

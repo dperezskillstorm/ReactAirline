@@ -25,24 +25,24 @@ export const UpdateFlightForm = (props) => {
     const arrivalAirportRef = useRef(); 
     const currentPassengersRef = useRef(); 
     const passengerLimitRef = useRef(); 
-    const  idNumberRef = props.document;
 
-    console.log(`priting props in updateFlightForm ${idNumberRef}`)
-    alert(idNumberRef)
+
+    
     //NOTES: Update work, needs _id in order to update and to populate all fields.
 
     const handleSubmit = async (event) => {
        // I need it to refresh else the data wont autopopulate
         //event.preventDefault();
         try {
-            await axios.patch(`http://localhost:8085/flight/${idNumberRef.current.value}`, 
+            await axios.patch(`http://localhost:8085/flight/${props.document}`, 
                             
                             {   flightNumber: flightNumberRef.current.value, 
-                                _id: idNumberRef.current.value,
+                                _id: props.document,
                                 arrivalDate: arrivalDateRef.current.value ,
                                 arrivalAirport: arrivalAirportRef.current.value,
                                 departureAirport: departureAirportRef.current.value,
                                 departureDate: departureDateRef.current.value,
+                                passengerLimit: passengerLimitRef.current.value,
                                
                                 });
                                
@@ -57,11 +57,10 @@ export const UpdateFlightForm = (props) => {
         <section>
             <form className="MyForm" onSubmit={handleSubmit} >
            
-                <label htmlFor="flightNumber">Flight Id:</label>
+                <label htmlFor="flightNumber"><h2>Flight Id:</h2> <h2 className="flightNumber">{props.data.flightNumber}</h2> </label>
                 
-                <div>
-                    <input id="flightNumber"  value={idNumberRef}  />
-                </div>
+            
+              
 
                 <label htmlFor="flightNumber">Flight Number:</label>
                 
@@ -86,7 +85,12 @@ export const UpdateFlightForm = (props) => {
 
                 <label htmlFor="departureDateTime">Departure Date/Time:</label>
                 <div>
-                    <input id="departureDateTime" type="datetime-local" placeholder="Last Name"required ref={departureDateRef} />
+                    <input id="departureDateTime" type="datetime-local" placeholder="Last Name" ref={departureDateRef} />
+                </div>
+
+                <label htmlFor="passengerLimit">Passenger Limit:</label>
+                <div>
+                    <input id="passengerLimit" type="text" placeholder="Last Name" ref={passengerLimitRef} />
                 </div>
 
              
